@@ -1,0 +1,230 @@
+:root {
+    /* カラーパレット（アースカラー・カーキ基調） */
+    --color-bg: #F4F1EA; /* 生成り色（背景） */
+    --color-text: #333333; /* 濃い灰茶（テキスト） */
+    --color-primary: #6B705C; /* カーキ・くすんだ緑 */
+    --color-secondary: #A5A58D; /* 薄いカーキ・抹茶色 */
+    --color-accent: #B08968; /* 茶色・土の色 */
+    --color-light: #FFFFFF;
+    
+    /* フォント設定 */
+    --font-gothic: 'Noto Sans JP', sans-serif;
+    --font-mincho: 'Noto Serif JP', serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-gothic);
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    line-height: 1.8;
+    letter-spacing: 0.05em;
+    /* 背景にうっすらとした和紙のようなテクスチャ感をCSSで表現 */
+    background-image: radial-gradient(var(--color-secondary) 0.5px, transparent 0.5px);
+    background-size: 20px 20px;
+    background-color: var(--color-bg);
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Header */
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(244, 241, 234, 0.9);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(107, 112, 92, 0.2);
+}
+
+.header-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: var(--font-mincho);
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
+.nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav a {
+    font-size: 0.9rem;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav a:hover {
+    color: var(--color-primary);
+}
+
+.nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--color-primary);
+    transition: width 0.3s ease;
+}
+
+.nav a:hover::after {
+    width: 100%;
+}
+
+/* Main Content */
+.main {
+    padding-top: 80px;
+}
+
+.section {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+}
+
+.section-inner {
+    max-width: 800px;
+    width: 100%;
+    background-color: var(--color-light);
+    padding: 4rem;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    position: relative;
+    border-top: 4px solid var(--color-primary);
+}
+
+/* セクションの装飾（和風のアクセント） */
+.section-inner::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 30px;
+    height: 30px;
+    border-top: 1px solid var(--color-secondary);
+    border-left: 1px solid var(--color-secondary);
+}
+
+.section-inner::after {
+    content: '';
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+    border-bottom: 1px solid var(--color-secondary);
+    border-right: 1px solid var(--color-secondary);
+}
+
+.section-title {
+    font-family: var(--font-mincho);
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: var(--color-primary);
+}
+
+.section-title .en {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--color-secondary);
+    font-family: var(--font-gothic);
+    letter-spacing: 0.2em;
+    margin-bottom: 0.5rem;
+}
+
+.content-box {
+    text-align: center;
+}
+
+.profile-text p {
+    margin-bottom: 1.5rem;
+}
+
+.profile-text strong {
+    color: var(--color-accent);
+}
+
+.highlight-text {
+    font-family: var(--font-mincho);
+    font-size: 1.5rem;
+    line-height: 2;
+    color: var(--color-primary);
+}
+
+.large-text {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 2rem;
+    color: var(--color-accent);
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--color-primary);
+    color: var(--color-bg);
+    font-size: 0.8rem;
+}
+
+/* スクロールアニメーション（フェードイン） */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1), transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* レスポンシブデザイン */
+@media screen and (max-width: 768px) {
+    .nav {
+        display: none; /* スマホではヘッダーメニューを非表示にするシンプルな設計 */
+    }
+    
+    .section-inner {
+        padding: 2rem 1.5rem;
+    }
+    
+    .highlight-text {
+        font-size: 1.2rem;
+    }
+    
+    .section {
+        min-height: auto;
+        padding: 3rem 1rem;
+    }
+}
